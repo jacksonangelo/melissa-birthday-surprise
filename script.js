@@ -55,7 +55,8 @@ ctx.translate(260,260);
 ctx.rotate(arc*i + arc/2);
 
 ctx.fillStyle="#fff";
-ctx.font="bold 15px Poppins";
+const fontSize = window.innerWidth < 600 ? 11 : 15;
+ctx.font=`bold ${fontSize}px Poppins`;
 ctx.textAlign="right";
 
 ctx.fillText(prizes[i],230,5);

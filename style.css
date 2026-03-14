@@ -86,6 +86,11 @@ align-items:center;
 
 canvas{
 
+width:100%;
+max-width:520px;
+
+height:auto;
+
 border-radius:50%;
 
 border:12px solid #c77dff;
@@ -448,5 +453,75 @@ transition:.2s;
 
 opacity:1;
 transform:scale(1.2);
+
+}
+
+button{
+
+touch-action:manipulation;
+
+}
+
+#spinBtn:active{
+
+transform:scale(0.95);
+
+}
+
+@media (max-width:768px){
+
+body{
+
+padding:20px;
+
+height:auto;
+
+}
+
+.container{
+
+padding:10px;
+
+}
+
+#spinBtn{
+
+width:130px;
+height:130px;
+
+font-size:16px;
+
+}
+
+.title{
+
+font-size:22px;
+
+}
+
+}
+
+@media (max-width:600px){
+
+.modal-header{
+
+flex-direction:column;
+
+}
+
+.artist,
+.premio-img{
+
+width:100%;
+
+}
+
+.modal-content{
+
+max-width:90%;
+
+padding:25px;
+
+}
 
 }
