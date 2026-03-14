@@ -70,12 +70,17 @@ ctx.restore();
 drawWheel();
 
 
-
 /* GIRAR ROLETA */
 
 spinBtn.onclick = ()=>{
 
 spinBtn.disabled = true;
+
+startSpin();
+
+};
+
+function startSpin(){
 
 statusText.innerText = "Girando... prepare-se 😈";
 
@@ -84,8 +89,6 @@ statusText.innerText = "Girando... prepare-se 😈";
 spinSound.currentTime = 0;
 spinSound.loop = true;
 spinSound.play();
-
-
 
 /* escolher vencedor */
 
@@ -97,12 +100,8 @@ const finalAngle =
 (360 * 6) +
 (360 - (winnerIndex * sliceAngle) - sliceAngle/2);
 
-
-
 const duration = 17000;
 const start = Date.now();
-
-
 
 function animate(){
 
@@ -115,13 +114,10 @@ rotation = finalAngle*ease;
 
 canvas.style.transform = `rotate(${rotation}deg)`;
 
-
-/* som desacelerando */
+/* desacelerar som */
 
 let speed = 1 - progress*0.7;
 spinSound.playbackRate = Math.max(speed,0.3);
-
-
 
 if(elapsed < duration){
 
@@ -130,8 +126,6 @@ requestAnimationFrame(animate);
 }else{
 
 canvas.style.transform = `rotate(${finalAngle}deg)`;
-
-/* parar som */
 
 spinSound.pause();
 spinSound.currentTime = 0;
@@ -142,20 +136,12 @@ setTimeout(()=>{
 
 launchConfetti();
 
-/* luzes de show */
-
 stageLights.classList.add("active");
-
-/* abrir modal */
 
 document.getElementById("modal").style.display="flex";
 
-/* música */
-
 winMusic.currentTime = 12;
 winMusic.play();
-
-/* pequena vibração dramática */
 
 document.querySelector(".modal-content").classList.add("win");
 
@@ -167,8 +153,7 @@ document.querySelector(".modal-content").classList.add("win");
 
 animate();
 
-};
-
+}
 
 
 /* FECHAR MODAL */
@@ -252,5 +237,25 @@ function resgatarPremio(){
 const imagem = document.getElementById("premioImagem");
 
 imagem.style.display = "block";
+
+imagem.classList.add("prize-glow");
+
+}
+
+/* GERAR PARTICULAS */
+
+const particleContainer = document.querySelector(".floating-particles");
+
+for(let i=0;i<60;i++){
+
+let p=document.createElement("span");
+
+p.style.left=Math.random()*100+"vw";
+
+p.style.animationDuration=6+Math.random()*10+"s";
+
+p.style.animationDelay=Math.random()*5+"s";
+
+particleContainer.appendChild(p);
 
 }
